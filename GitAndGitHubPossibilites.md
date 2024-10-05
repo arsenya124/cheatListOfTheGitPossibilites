@@ -192,3 +192,12 @@ $ git add --all - подготовит все файлы к сохранению
 $ git add . - подготовит всю папку к сохранению
 ```
 
+```mermaid
+graph LR;
+  untracked -- "git add" --> staged;
+  staged    -- "???"     --> tracked/comitted;
+
+%% стрелка без текста для примера: 
+  A --> B;
+```
+
