@@ -192,10 +192,12 @@ $ git add --all - подготовит все файлы к сохранению
 $ git add . - подготовит всю папку к сохранению
 ```
 
+### Типичный жизненный цикл файла в Git
+
 ```mermaid
 graph LR;
-  untracked -- "git add" --> staged;
-  staged    -- "???"     --> tracked/comitted;
+  untracked (неотслеживаемый) -- "git add" --> staged (в списке на коммит) + tracked;
+  staged    -- "git commit -m '[Сообщение коммита]'"     --> tracked/comitted;
 
 %% стрелка без текста для примера: 
   A --> B;
