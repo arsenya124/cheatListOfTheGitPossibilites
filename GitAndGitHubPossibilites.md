@@ -178,6 +178,25 @@ rm -rf .git (r(om англ. recursive) и f(om англ. force))
 $ git status
 ```
 
+### Типичный жизненный цикл файла в Git
+
+```mermaid
+graph LR;
+  untracked -- "git add" --> staged;
+  staged    -- "git commit -m '[Сообщение коммита]'"     --> tracked/comitted;
+  tracked/comitted -- "Изменения" --> modified;
+  modified -- "git add" --> staged;
+  staged -- "Изменения до коммита" --> modified
+```
+
+### Про статусы файлов в Git
+
+* `untracked` - Git «видит», что такой файл существует, но не следит за изменениями в нём. У untracked-файла нет предыдущих версий, зафиксированных в коммитах или через команду `git add`.
+* `staged` -  После выполнения команды `git add` файл попадает в staging area, то есть в список файлов, которые войдут в коммит.
+* `modified` - Состояние `modified` означает, что Git сравнил содержимое файла с последней сохранённой версией и нашёл отличия.
+* `tracked` - Состояние `tracked` — это противоположность `untracked`. Оно довольно широкое по смыслу: в него все попадают файлы, кроме тех, которые еще не отслеживаются.
+
+
 ### Подготовить файлы к сохранению
 
 ```
@@ -192,13 +211,3 @@ $ git add --all - подготовит все файлы к сохранению
 $ git add . - подготовит всю папку к сохранению
 ```
 
-### Типичный жизненный цикл файла в Git
-
-```mermaid
-graph LR;
-  untracked -- "git add" --> staged;
-  staged    -- "git commit -m '[Сообщение коммита]'"     --> tracked/comitted;
-  tracked/comitted -- "Изменения" --> modified;
-  modified -- "git add" --> staged;
-  staged -- "Изменения до коммита" --> modified
-```
